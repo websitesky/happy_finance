@@ -536,11 +536,13 @@ details[hidden]{display:none}
 @media (max-width:1100px){.tm-track{grid-auto-columns:calc((100% - 20px)/1.6)}}
 @media (max-width:900px){
  .team-s .wrap{grid-template-columns:1fr}
- .rings{display:none}
+ .rings{position:relative;left:auto;top:auto;bottom:auto;width:auto;height:0;flex-direction:row;justify-content:space-around;align-items:center;padding:0 20px}
+ .rings i{width:22px;height:50px;border-radius:11px;background:linear-gradient(90deg,#FFFFFF 0%,#C9CED5 35%,#8C939C 55%,#E3E6EA 75%,#9EA4AC 100%)}
+ .rings i::after{inset:6px 6px;border-radius:6px;background:linear-gradient(180deg,#0E2160 0 48%,#FDFDFB 48%)}
  .tm-head{grid-column:1;grid-row:auto;border-radius:14px 14px 0 0;padding:32px 24px;gap:24px}
  .tm-head > *{max-width:none}
  .tm-page{grid-column:1;grid-row:auto;border-radius:0 0 14px 14px;background:linear-gradient(rgba(64,110,190,.30) 1px,transparent 1px) 0 0/26px 26px,linear-gradient(90deg,rgba(64,110,190,.30) 1px,transparent 1px) 0 0/26px 26px,#FDFDFB}
- .tm-track{padding:24px 16px 20px;scroll-padding-left:16px}
+ .tm-track{padding:40px 16px 20px;scroll-padding-left:16px}
  .tm-nav{padding:0 16px 24px}
 }
 @media (max-width:760px){.tm-track{grid-auto-columns:88%;gap:14px}.tm-back{gap:12px;padding:20px 18px 16px}.tm-back p{font-size:13.5px;line-height:1.45}}

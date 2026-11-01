@@ -231,38 +231,32 @@ nav.main a:hover{border-color:var(--orange)}
 .price small{display:block;font:500 13px var(--f-body);letter-spacing:0;opacity:.8}
 @media (max-width:1180px){
   .rails{flex-direction:column;height:auto;gap:64px;padding-top:56px}
-  .folder{flex:none;min-width:0;transition:none;scroll-margin-top:120px}
+  .folder{flex:none;min-width:0;transition:color .5s;-webkit-tap-highlight-color:transparent}
   .folder.on{flex:none}
-  .f-vert{display:none}
-  /* відкриття: папка плавно розгортається вниз, синій перетікає в помаранчевий */
-  .f-card{position:relative;inset:auto;min-height:104px;display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
-  .folder.on .f-card{grid-template-rows:1fr}
+  .f-vert,.f-body{display:none}
+  .f-card{position:relative;inset:auto;min-height:104px;transition:transform .2s var(--ease)}
   .folder.on .f-card,.folder.on .f-tab{background-color:#102662;background-image:var(--navy-rib)}
-  .f-card::after,.f-tab::after{content:"";position:absolute;inset:0;z-index:-1;background-color:#FB6835;background-image:var(--orange-rib);opacity:0;transition:opacity .55s var(--ease)}
-  .folder.on .f-card::after,.folder.on .f-tab::after{opacity:1}
-  .f-tab{transition:transform .6s var(--ease),color .4s}
-  .folder.on .f-tab{transform:translateX(18px)}
-  .folder.on::before{transform:translateY(-7px)}
-  .f-body{display:grid;grid-template-columns:1fr;gap:20px;position:relative;inset:auto;min-width:0;min-height:0;overflow:hidden;padding:0 24px;opacity:0;visibility:visible;transform:none;transition:opacity .35s}
-  .folder.on .f-body{opacity:1;transition:opacity .4s .15s}
-  .f-main{padding-top:96px}
-  .f-lists{padding-bottom:28px}
-  .f-main,.f-lists{opacity:0;transform:translateY(18px);transition:opacity .3s,transform .3s}
-  .folder.on .f-main,.folder.on .f-lists{opacity:1;transform:none;transition:opacity .5s .25s,transform .6s .25s var(--ease)}
-  .folder.on .f-lists{transition-delay:.4s}
+  /* папка посередині екрана або під пальцем плавно стає помаранчевою, як на комп'ютері */
+  .f-card::after,.f-tab::after{content:"";position:absolute;inset:0;z-index:-1;background-color:#FB6835;background-image:var(--orange-rib);opacity:0;transition:opacity .6s var(--ease)}
+  .folder.hot,.folder:active{color:#0D1330}
+  .folder.hot .f-card::after,.folder.hot .f-tab::after,.folder:active .f-card::after,.folder:active .f-tab::after{opacity:1}
+  .f-tab{transition:transform .6s var(--ease),color .5s}
+  .folder.on .f-tab{transform:none}
+  .folder.hot .f-tab{transform:translateX(18px)}
+  .folder.hot .f-tab,.folder:active .f-tab{color:#0D1330}
+  .folder::before{transition:transform .6s var(--ease)}
+  .folder.hot::before{transform:translateY(-7px)}
+  .folder:active .f-card{transform:scale(.98)}
   .f-ic{transition:transform .6s var(--ease)}
-  .folder.on .f-ic{transform:rotate(-8deg) scale(1.06)}
-  .f-name{display:block;position:absolute;left:92px;right:72px;top:52px;transform:translateY(-50%);font:700 17px/1.25 var(--f-head);transition:opacity .3s}
-  .folder.on .f-name{opacity:0;pointer-events:none}
-  .f-more{display:flex;position:absolute;right:16px;top:48px;z-index:3;width:40px;height:40px;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--sand);color:#102662;font-size:20px;cursor:pointer;transition:top .6s var(--ease),right .6s var(--ease),background-color .4s,color .4s}
-  .f-more i{transition:transform .5s var(--ease)}
-  .folder.on .f-more{top:24px;right:20px;background:#0D1330;color:#fff}
-  .folder.on .f-more i{transform:rotate(135deg)}
+  .folder.hot .f-ic{transform:rotate(-8deg)}
+  .f-name{display:block;position:absolute;left:92px;right:72px;top:52px;transform:translateY(-50%);font:700 17px/1.25 var(--f-head)}
+  .f-more{display:flex;position:absolute;right:16px;bottom:16px;width:40px;height:40px;align-items:center;justify-content:center;border-radius:50%;background:var(--sand);color:#102662;font-size:20px;transition:background-color .5s,color .5s}
+  .folder.hot .f-more,.folder:active .f-more{background:#0D1330;color:#fff}
 }
 /* поява блоку: папки лягають одна за одною, як перегорнуті аркуші */
 @media (max-width:1180px) and (prefers-reduced-motion:no-preference){
   html.js .rails.reveal{opacity:1;transform:none}
-  html.js .rails .folder{opacity:0;transform:perspective(900px) rotateX(-55deg) translateY(-18px);transform-origin:50% 0;transition:opacity .6s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+  html.js .rails .folder{opacity:0;transform:perspective(900px) rotateX(-55deg) translateY(-18px);transform-origin:50% 0;transition:opacity .6s var(--ease),transform .9s var(--ease),color .5s;transition-delay:var(--d,0ms),var(--d,0ms),0ms}
   html.js .rails .folder.seen{opacity:1;transform:none}
 }
 @media (min-width:1181px){.f-name,.f-more{display:none}}

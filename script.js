@@ -88,48 +88,39 @@
   });
 
   // рифлені папки: наведення, фокус або дотик висувають папку вперед
-  // на вузькому екрані папки складені закритими, плюс у куточку відкриває одну
+  // на вузькому екрані папки складені закритими, дотик відкриває вікно «Детальніше» цієї послуги
   const folders = $$('.folder');
   const narrow = matchMedia('(max-width:1180px)');
-  const openFolder = f => folders.forEach(x => {
-    x.classList.toggle('on', x === f);
-    const b = x.querySelector('.f-more');
-    if (b) { b.setAttribute('aria-expanded', x === f); b.setAttribute('aria-label', x === f ? 'Згорнути' : 'Відкрити'); }
-  });
-  // відкрити на телефоні й прокрутити до папки з поправкою на ту, що згортається вище
-  const openNarrow = f => {
-    const prev = folders.find(x => x.classList.contains('on'));
-    const shift = prev && folders.indexOf(prev) < folders.indexOf(f) ? prev.querySelector('.f-card').offsetHeight - parseFloat(getComputedStyle(prev.querySelector('.f-card')).minHeight) : 0;
-    const top = f.getBoundingClientRect().top + scrollY - shift - 120;
-    openFolder(f);
-    scrollTo({ top, behavior: 'smooth' });
-  };
+  const openFolder = f => folders.forEach(x => x.classList.toggle('on', x === f));
   folders.forEach(f => {
     const name = document.createElement('span');
     name.className = 'f-name'; name.setAttribute('aria-hidden', 'true');
     name.textContent = f.getAttribute('aria-label');
-    const more = document.createElement('button');
-    more.type = 'button'; more.className = 'f-more';
-    more.innerHTML = '<i class="ph ph-plus" aria-hidden="true"></i>';
+    const more = document.createElement('span');
+    more.className = 'f-more'; more.setAttribute('aria-hidden', 'true');
+    more.innerHTML = '<i class="ph ph-plus"></i>';
     f.querySelector('.f-card').append(name, more);
-    more.addEventListener('click', e => {
-      if (!narrow.matches) return;
-      e.stopPropagation();
-      f.classList.contains('on') ? openFolder(null) : openNarrow(f);
-    });
     f.addEventListener('mouseenter', () => { if (!narrow.matches) openFolder(f); });
     f.addEventListener('focusin', () => { if (!narrow.matches) openFolder(f); });
-    f.addEventListener('click', () => {
-      if (!narrow.matches) return openFolder(f);
-      if (!f.classList.contains('on')) openNarrow(f);
-    });
+    f.addEventListener('click', () => { if (!narrow.matches) openFolder(f); });
+    f.addEventListener('keydown', e => { if (narrow.matches && (e.key === 'Enter' || e.key === ' ') && e.target === f) { e.preventDefault(); f.click(); } });
   });
+  // дані вікна вішаємо на саму папку лише на телефоні, тож клік по ній відкриває вікно
   const syncFolders = () => {
+    folders.forEach(f => {
+      const id = f.querySelector('[data-drawer]')?.dataset.drawer;
+      if (narrow.matches && id) { f.dataset.drawer = id; f.setAttribute('role', 'button'); }
+      else { delete f.dataset.drawer; f.removeAttribute('role'); }
+    });
     if (narrow.matches) openFolder(null);
     else if (!folders.some(x => x.classList.contains('on'))) openFolder(folders[0]);
   };
   syncFolders();
   narrow.addEventListener('change', syncFolders);
+  // гортання на телефоні: папка посередині екрана стає помаранчевою
+  const hotIO = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('hot', e.isIntersecting)),
+    { rootMargin: '-42% 0px -42% 0px' });
+  folders.forEach(f => hotIO.observe(f));
   // поява на телефоні: кожна папка лягає, коли сама доходить до екрана
   const seenIO = new IntersectionObserver(es => {
     es.filter(e => e.isIntersecting).forEach((e, i) => {

@@ -96,6 +96,14 @@
     const b = x.querySelector('.f-more');
     if (b) { b.setAttribute('aria-expanded', x === f); b.setAttribute('aria-label', x === f ? 'Згорнути' : 'Відкрити'); }
   });
+  // відкрити на телефоні й прокрутити до папки з поправкою на ту, що згортається вище
+  const openNarrow = f => {
+    const prev = folders.find(x => x.classList.contains('on'));
+    const shift = prev && folders.indexOf(prev) < folders.indexOf(f) ? prev.querySelector('.f-card').offsetHeight - parseFloat(getComputedStyle(prev.querySelector('.f-card')).minHeight) : 0;
+    const top = f.getBoundingClientRect().top + scrollY - shift - 120;
+    openFolder(f);
+    scrollTo({ top, behavior: 'smooth' });
+  };
   folders.forEach(f => {
     const name = document.createElement('span');
     name.className = 'f-name'; name.setAttribute('aria-hidden', 'true');
@@ -107,14 +115,13 @@
     more.addEventListener('click', e => {
       if (!narrow.matches) return;
       e.stopPropagation();
-      openFolder(f.classList.contains('on') ? null : f);
-      if (f.classList.contains('on')) f.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      f.classList.contains('on') ? openFolder(null) : openNarrow(f);
     });
     f.addEventListener('mouseenter', () => { if (!narrow.matches) openFolder(f); });
     f.addEventListener('focusin', () => { if (!narrow.matches) openFolder(f); });
     f.addEventListener('click', () => {
       if (!narrow.matches) return openFolder(f);
-      if (!f.classList.contains('on')) { openFolder(f); f.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      if (!f.classList.contains('on')) openNarrow(f);
     });
   });
   const syncFolders = () => {

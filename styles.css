@@ -238,12 +238,12 @@ nav.main a:hover{border-color:var(--orange)}
   .folder.on .f-card,.folder.on .f-tab{background-color:#102662;background-image:var(--navy-rib)}
   /* папка посередині екрана або під пальцем плавно стає помаранчевою, як на комп'ютері */
   .f-card::after,.f-tab::after{content:"";position:absolute;inset:0;z-index:-1;background-color:#FB6835;background-image:var(--orange-rib);opacity:0;transition:opacity .6s var(--ease)}
-  .folder.hot,.folder:active{color:#0D1330}
-  .folder.hot .f-card::after,.folder.hot .f-tab::after,.folder:active .f-card::after,.folder:active .f-tab::after{opacity:1}
+  .folder.hot{color:#0D1330}
+  .folder.hot .f-card::after,.folder.hot .f-tab::after{opacity:1}
   .f-tab{transition:transform .6s var(--ease),color .5s}
   .folder.on .f-tab{transform:none}
   .folder.hot .f-tab{transform:translateX(18px)}
-  .folder.hot .f-tab,.folder:active .f-tab{color:#0D1330}
+  .folder.hot .f-tab{color:#0D1330}
   .folder::before{transition:transform .6s var(--ease)}
   .folder.hot::before{transform:translateY(-7px)}
   .folder:active .f-card{transform:scale(.98)}
@@ -251,7 +251,7 @@ nav.main a:hover{border-color:var(--orange)}
   .folder.hot .f-ic{transform:rotate(-8deg)}
   .f-name{display:block;position:absolute;left:92px;right:72px;top:52px;transform:translateY(-50%);font:700 17px/1.25 var(--f-head)}
   .f-more{display:flex;position:absolute;right:16px;bottom:16px;width:40px;height:40px;align-items:center;justify-content:center;border-radius:50%;background:var(--sand);color:#102662;font-size:20px;transition:background-color .5s,color .5s}
-  .folder.hot .f-more,.folder:active .f-more{background:#0D1330;color:#fff}
+  .folder.hot .f-more{background:#0D1330;color:#fff}
 }
 /* поява блоку: папки лягають одна за одною, як перегорнуті аркуші */
 @media (max-width:1180px) and (prefers-reduced-motion:no-preference){

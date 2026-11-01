@@ -117,10 +117,25 @@
   };
   syncFolders();
   narrow.addEventListener('change', syncFolders);
-  // гортання на телефоні: папка посередині екрана стає помаранчевою
-  const hotIO = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('hot', e.isIntersecting)),
-    { rootMargin: '-42% 0px -42% 0px' });
-  folders.forEach(f => hotIO.observe(f));
+  // гортання на телефоні: помаранчева лише одна папка, найближча до середини екрана
+  const setHot = f => folders.forEach(x => x.classList.toggle('hot', x === f));
+  let hotRaf = 0;
+  const pickHot = () => {
+    hotRaf = 0;
+    if (!narrow.matches) return setHot(null);
+    const mid = innerHeight / 2;
+    let best = null, dist = Infinity;
+    folders.forEach(f => {
+      const r = f.getBoundingClientRect();
+      const d = mid < r.top ? r.top - mid : mid > r.bottom ? mid - r.bottom : 0;
+      if (d < dist) { dist = d; best = f; }
+    });
+    setHot(dist < 60 ? best : null);
+  };
+  addEventListener('scroll', () => { if (!hotRaf) hotRaf = requestAnimationFrame(pickHot); }, { passive: true });
+  addEventListener('resize', pickHot);
+  folders.forEach(f => f.addEventListener('pointerdown', () => { if (narrow.matches) setHot(f); }));
+  pickHot();
   // поява на телефоні: кожна папка лягає, коли сама доходить до екрана
   const seenIO = new IntersectionObserver(es => {
     es.filter(e => e.isIntersecting).forEach((e, i) => {

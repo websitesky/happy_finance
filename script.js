@@ -88,13 +88,41 @@
   });
 
   // рифлені папки: наведення, фокус або дотик висувають папку вперед
+  // на вузькому екрані папки складені закритими, плюс у куточку відкриває одну
   const folders = $$('.folder');
-  const openFolder = f => folders.forEach(x => x.classList.toggle('on', x === f));
-  folders.forEach(f => {
-    f.addEventListener('mouseenter', () => openFolder(f));
-    f.addEventListener('focusin', () => openFolder(f));
-    f.addEventListener('click', () => openFolder(f));
+  const narrow = matchMedia('(max-width:1180px)');
+  const openFolder = f => folders.forEach(x => {
+    x.classList.toggle('on', x === f);
+    const b = x.querySelector('.f-more');
+    if (b) { b.setAttribute('aria-expanded', x === f); b.setAttribute('aria-label', x === f ? 'Згорнути' : 'Відкрити'); }
   });
+  folders.forEach(f => {
+    const name = document.createElement('span');
+    name.className = 'f-name'; name.setAttribute('aria-hidden', 'true');
+    name.textContent = f.getAttribute('aria-label');
+    const more = document.createElement('button');
+    more.type = 'button'; more.className = 'f-more';
+    more.innerHTML = '<i class="ph ph-plus" aria-hidden="true"></i>';
+    f.querySelector('.f-card').append(name, more);
+    more.addEventListener('click', e => {
+      if (!narrow.matches) return;
+      e.stopPropagation();
+      openFolder(f.classList.contains('on') ? null : f);
+      if (f.classList.contains('on')) f.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    f.addEventListener('mouseenter', () => { if (!narrow.matches) openFolder(f); });
+    f.addEventListener('focusin', () => { if (!narrow.matches) openFolder(f); });
+    f.addEventListener('click', () => {
+      if (!narrow.matches) return openFolder(f);
+      if (!f.classList.contains('on')) { openFolder(f); f.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+  const syncFolders = () => {
+    if (narrow.matches) openFolder(null);
+    else if (!folders.some(x => x.classList.contains('on'))) openFolder(folders[0]);
+  };
+  syncFolders();
+  narrow.addEventListener('change', syncFolders);
 
   // питання: фільтр за темою
   const faqChips = $$('[data-faq]');

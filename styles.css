@@ -122,7 +122,6 @@ nav.main a:hover{border-color:var(--orange)}
 .hero-visual figcaption{position:absolute;z-index:3;right:48px;bottom:40px;max-width:280px;background:#fff;color:#0D1330;padding:14px 16px;border-radius:var(--r);font-size:14px;line-height:1.45;box-shadow:var(--shadow)}
 .hero-visual figcaption b{display:block;font-family:var(--f-head);font-size:15px;margin-bottom:2px}
 .mark-img{display:block;object-fit:contain}
-.foot-grid .mark-img{filter:brightness(0) invert(1)}
 
 /* біжучий рядок */
 .marquee{background:var(--sand);color:var(--night);overflow:hidden;border-block:1px solid rgba(13,19,48,.12)}
@@ -190,8 +189,6 @@ nav.main a:hover{border-color:var(--orange)}
 .cta-final .bgphoto img{opacity:1;object-position:right center;filter:brightness(1.18) contrast(1.05)}
 @media (max-width:900px){.cta-final .bgphoto{left:0;top:auto;bottom:0;height:560px;mask-image:linear-gradient(180deg,transparent,#000 22%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%)}.cta-final .bgphoto img{object-position:62% center}}
 .site-foot{position:relative}
-.site-foot .bgphoto{left:55%;mask-image:linear-gradient(90deg,transparent,#000 60%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 60%)}
-.site-foot .bgphoto img{opacity:.45;object-position:center}
 .foot-grid{position:relative}
 
 /* послуги: рифлені папки */
@@ -699,27 +696,26 @@ form.lead-form{display:grid;gap:18px;max-width:560px}
 .crow small{display:block;color:rgba(255,255,255,.7);font-size:13px}
 .crow b{font-size:17px}
 
-.site-foot .bgphoto img{opacity:.18}
-footer.site-foot{background:var(--night-deep);color:rgba(255,255,255,.78);padding:48px 24px;font-size:15px}
+footer.site-foot{background:var(--sand-soft);color:rgba(16,38,98,.8);padding:48px 24px;font-size:15px}
 .foot-grid{display:grid;grid-template-columns:1fr 1fr 1.7fr;gap:40px;align-items:start}
 .foot-two{display:grid;grid-template-columns:auto auto;grid-template-rows:repeat(3,auto);grid-auto-flow:column;justify-content:start;gap:10px 40px}
 .foot-brand{display:grid;gap:22px}
 .foot-social{display:flex;gap:10px}
-.foot-social a{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,.28);font-size:21px;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.foot-social a{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(16,38,98,.3);font-size:21px;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
 .foot-social a:hover{background:var(--orange);border-color:var(--orange);color:#0D1330}
 .foot-col{display:grid;gap:10px;align-content:start}
-.foot-col h4{margin-bottom:6px;font:700 12px/1.2 var(--f-head);letter-spacing:.12em;text-transform:uppercase;color:var(--sand)}
+.foot-col h4{margin-bottom:6px;font:700 12px/1.2 var(--f-head);letter-spacing:.12em;text-transform:uppercase;color:#C2491E}
 .foot-nav a{text-decoration:none;opacity:.85}
 .foot-nav a:hover{opacity:1;text-decoration:underline}
 .foot-contacts a,.foot-contacts p{display:flex;align-items:center;gap:10px;margin:0;text-decoration:none}
-.foot-contacts i{font-size:19px;color:var(--sand)}
+.foot-contacts i{font-size:19px;color:#C2491E}
 .foot-contacts a:hover span{text-decoration:underline}
-.foot-bottom{position:relative;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);font-size:14px}
-.foot-bottom a{color:#fff}
+.foot-bottom{position:relative;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:20px;border-top:1px solid rgba(16,38,98,.15);font-size:14px}
+.foot-bottom a{color:var(--navy)}
 @media (max-width:860px){.foot-grid{grid-template-columns:1fr}.foot-brand{grid-column:auto}.foot-contacts{display:none}}
 @media (max-width:520px){.foot-contacts .foot-two{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
-.foot-grid .logo{color:#fff}
-.foot-grid a{color:#fff}
+.foot-grid .logo{color:var(--navy)}
+.foot-grid a{color:var(--navy)}
 .foot-grid p+p{margin-top:0}
 
 /* drawers і модалка */

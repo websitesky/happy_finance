@@ -35,9 +35,9 @@ section{padding:104px 24px;position:relative}
 .skip:focus{top:12px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* маркери "заглушка" для макета: ?clean у адресі їх ховає */
+/* маркери "заглушка" сховані; ?todo у адресі показує їх (список у happy-finance/ЗАГЛУШКИ.md) */
 .todo{display:inline-block;font:700 12px/1.3 var(--f-body);background:#FFE9A8;color:#5A4500;padding:2px 7px;border-radius:4px;vertical-align:middle;margin-left:6px;letter-spacing:.02em}
-html.clean .todo{display:none}
+html:not(.show-todo) .todo,html:not(.show-todo) .todo-block{display:none}
 
 /* акцент: ключові слова кольором, бежевим на темному фоні, теракотовим на світлому */
 :root{--mark:#C2491E}

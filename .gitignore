@@ -1,0 +1,7 @@
+preview-*.html
+variants*.html
+variants*.css
+variants*.js
+archive/
+.DS_Store
+Thumbs.db

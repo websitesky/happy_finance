@@ -261,8 +261,8 @@ nav.main a:hover{border-color:var(--orange)}
 /* поява блоку: папки лягають одна за одною, як перегорнуті аркуші */
 @media (max-width:1180px) and (prefers-reduced-motion:no-preference){
   html.js .rails.reveal{opacity:1;transform:none}
-  html.js .rails .folder{opacity:0;transform:perspective(900px) rotateX(-55deg) translateY(-18px);transform-origin:50% 0;transition:opacity .6s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--t) * 140ms)}
-  html.js .rails.in .folder{opacity:1;transform:none}
+  html.js .rails .folder{opacity:0;transform:perspective(900px) rotateX(-55deg) translateY(-18px);transform-origin:50% 0;transition:opacity .6s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+  html.js .rails .folder.seen{opacity:1;transform:none}
 }
 @media (min-width:1181px){.f-name,.f-more{display:none}}
 

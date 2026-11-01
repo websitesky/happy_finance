@@ -130,6 +130,15 @@
   };
   syncFolders();
   narrow.addEventListener('change', syncFolders);
+  // поява на телефоні: кожна папка лягає, коли сама доходить до екрана
+  const seenIO = new IntersectionObserver(es => {
+    es.filter(e => e.isIntersecting).forEach((e, i) => {
+      e.target.style.setProperty('--d', i * 160 + 'ms');
+      e.target.classList.add('seen');
+      seenIO.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  folders.forEach(f => seenIO.observe(f));
 
   // питання: фільтр за темою
   const faqChips = $$('[data-faq]');

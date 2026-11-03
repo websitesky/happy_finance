@@ -488,7 +488,6 @@ details[hidden]{display:none}
 .bridge{display:flex;align-items:center;justify-content:center;gap:18px;max-width:1240px;margin:0 auto 40px;font:600 clamp(18px,1.8vw,22px)/1.35 var(--f-head);text-align:center;color:var(--ink)}
 .trust .bridge{margin:80px auto 0}
 .faq{padding-top:72px}
-.faq .bridge{margin-bottom:56px}
 .bridge::before,.bridge::after{content:"";flex:0 1 120px;height:8px;background:radial-gradient(circle at calc(100% - 4px) 50%,#FB6835 3.5px,transparent 4px) no-repeat,linear-gradient(90deg,transparent,#B9AEA2) left center/calc(100% - 12px) 1px no-repeat}
 .bridge::after{background:radial-gradient(circle at 4px 50%,#FB6835 3.5px,transparent 4px) no-repeat,linear-gradient(90deg,#B9AEA2,transparent) right center/calc(100% - 12px) 1px no-repeat}
 @media (max-width:640px){.bridge::before,.bridge::after{flex-basis:28px}}

@@ -778,7 +778,10 @@ footer.site-foot{background:var(--sand-soft);color:rgba(16,38,98,.8);padding:48p
 .dhero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:48px 32px 52px}
 .dhero>*{position:relative}
 .dhero .grid-bg{position:absolute;inset:0}
-.dhero .ribbed{position:absolute;right:-56px;top:-56px;width:240px;height:240px;transform:rotate(14deg)}
+/* вікно послуги відкривається як та сама папка: помаранчеве вушко з назвою і смуга під ним */
+.dhero{padding-top:84px}
+.dhero .dh-tab{position:absolute;left:0;top:0;height:46px;display:flex;align-items:center;padding:4px 40px 0 32px;font:700 12px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:#0D1330;background:#FB6835;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 100%,0 100%)}
+.dhero::after{content:"";position:absolute;left:0;right:0;top:46px;height:6px;background:#FB6835}
 .dhero h2{font-size:clamp(26px,3vw,38px);max-width:18ch;margin-bottom:14px}
 .dhero .lead{color:rgba(255,255,255,.84);max-width:46ch;margin:0}
 .dprice{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-top:30px;padding:14px 20px;background:#fff;color:#0D1330;border-radius:var(--r)}
@@ -885,7 +888,8 @@ footer.site-foot{background:var(--sand-soft);color:rgba(16,38,98,.8);padding:48p
   .sit-body{padding:20px}
   .sit-bridge{padding:24px 20px}
   .dtrio{grid-template-columns:1fr}
-  .dhero{padding:40px 20px 44px}
+  .dhero{padding:76px 20px 44px}
+  .dhero .dh-tab{padding-left:20px}
   .marquee-group li{padding:13px 0 13px 18px;font-size:11.5px}
   .stats{grid-template-columns:1fr;gap:20px}
   .stat{padding:0 0 20px;border-left:0;border-bottom:1px solid var(--line)}

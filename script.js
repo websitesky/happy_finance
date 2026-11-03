@@ -314,6 +314,14 @@
   const h = location.hash.slice(1);
   if (h && document.getElementById(h)?.classList.contains('drawer')) openDrawer(h);
 
+  // кнопка «вгору» з'являється, коли прогорнули більше за екран
+  const toTop = $('#to-top');
+  if (toTop) {
+    const syncTop = () => toTop.classList.toggle('on', scrollY > innerHeight);
+    addEventListener('scroll', syncTop, { passive: true }); syncTop();
+    toTop.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
   // швидкі кнопки ховаються біля фінальної форми
   const fab = $('#fab'), fabZones = $$('#contacts, footer.site-foot');
   if (fab && fabZones.length && 'IntersectionObserver' in window) {
@@ -321,6 +329,7 @@
     const io = new IntersectionObserver(es => {
       es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target));
       fab.classList.toggle('hide', seen.size > 0);
+      toTop?.classList.toggle('low', seen.size > 0);
     }, { threshold: .15 });
     fabZones.forEach(z => io.observe(z));
   }

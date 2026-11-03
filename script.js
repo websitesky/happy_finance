@@ -314,6 +314,34 @@
   const h = location.hash.slice(1);
   if (h && document.getElementById(h)?.classList.contains('drawer')) openDrawer(h);
 
+  // цитата на екрані ноутбука друкується, коли блок з'являється
+  const trBox = $('.tr-copy');
+  if (trBox) {
+    const a = $('.t-a', trBox), b = $('.t-b', trBox);
+    const partA = '«Ми не несемо проблеми клієнтам.', partB = 'У будь-якій ситуації даємо варіанти рішень.»';
+    const full = partA + partB;
+    const caret = document.createElement('i'); caret.className = 'tr-caret';
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      a.textContent = partA; b.textContent = partB; trBox.classList.add('done');
+    } else {
+      const trIO = new IntersectionObserver(es => {
+        if (!es[0].isIntersecting) return;
+        trIO.disconnect();
+        let i = 0;
+        const tick = () => {
+          i++;
+          a.textContent = full.slice(0, Math.min(i, partA.length));
+          b.textContent = i > partA.length ? full.slice(partA.length, i) : '';
+          (i > partA.length ? b : a).after(caret);
+          if (i < full.length) setTimeout(tick, /[.,»]/.test(full[i - 1]) ? 260 : 38);
+          else trBox.classList.add('done');
+        };
+        setTimeout(tick, 500);
+      }, { threshold: .6 });
+      trIO.observe(trBox);
+    }
+  }
+
   // кнопка «вгору» з'являється, коли прогорнули більше за екран
   const toTop = $('#to-top');
   if (toTop) {

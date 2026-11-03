@@ -527,7 +527,7 @@ details[hidden]{display:none}
 .tm-todo{position:absolute;left:12px;top:12px;margin:0}
 .tm-body{display:flex;flex-direction:column;gap:10px;padding:20px 20px 16px;flex:1}
 .tm-body h3{font-size:19px;color:#0D1330}
-.tm-role{margin-top:-6px;font:700 12px/1.35 var(--f-head);letter-spacing:.06em;text-transform:uppercase;color:#A63A14}
+.tm-role{margin-top:-6px;font:700 12px/1.35 var(--f-head);letter-spacing:.06em;text-transform:uppercase;color:#C2491E}
 .tm-benefit{font:700 17px/1.35 var(--f-head);color:#0D1330}
 .tm-turn{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:44px;padding:12px 0 0;border:0;border-top:1px solid #E6DED5;background:none;font:700 14px/1.2 var(--f-head);color:#0D1330;cursor:pointer}
 .tm-turn span{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--orange);color:#0D1330;font-size:17px;transition:transform .5s var(--ease)}

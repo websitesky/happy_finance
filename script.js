@@ -317,7 +317,7 @@
   const trBox = $('.tr-copy');
   if (trBox) {
     const a = $('.t-a', trBox), b = $('.t-b', trBox);
-    const partA = '«Ми не несемо проблеми клієнтам.', partB = 'У будь-якій ситуації даємо варіанти рішень.»';
+    const partA = '«Ми не кажемо „це неможливо“.', partB = 'У будь-якій ситуації даємо варіанти рішень.»';
     const full = partA + partB;
     const caret = document.createElement('i'); caret.className = 'tr-caret';
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {

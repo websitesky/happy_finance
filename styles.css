@@ -818,15 +818,17 @@ footer.site-foot{background:var(--sand-soft);color:rgba(16,38,98,.8);padding:48p
 .dsteps li:last-child::after{display:none}
 .dsteps b{display:block;font:700 16px/1.3 var(--f-head);margin-bottom:3px}
 .dsteps span{display:block;color:var(--muted);font-size:15.5px;line-height:1.5}
-.dgain{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.dgain div{padding:18px;border-radius:var(--r);background:var(--sand-soft)}
-.dgain i{font-size:26px;color:var(--navy)}
-.dgain b{display:block;margin:10px 0 2px;font:700 16px/1.25 var(--f-head)}
-.dgain span{font-size:14px;color:var(--muted)}
+/* «Що ви отримуєте»: синя панель із сіткою й рифленим краєм з брендбуку, іконки в рамці знака */
+.dgain{position:relative;display:grid;grid-template-columns:repeat(3,1fr);background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px;border-radius:var(--r);padding:10px 0 10px 8px;overflow:hidden}
+.dgain::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:repeating-linear-gradient(180deg,#FB6835 0 6px,#C9401A 6px 8px)}
+.dgain div{padding:20px 24px;color:#fff}
+.dgain i{display:grid;place-items:center;width:46px;height:46px;border:1.5px solid rgba(255,255,255,.55);color:#FB6835;font-size:24px}
+.dgain b{display:block;margin:14px 0 4px;font:700 16px/1.25 var(--f-head);color:#fff}
+.dgain span{font-size:14px;color:rgba(255,255,255,.75)}
 .dnote{padding:18px 20px;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted);font-size:15px;line-height:1.5}
 .dnote b{color:var(--ink)}
 .grp-grid{margin-bottom:32px}
-@media (max-width:640px){.dgain{grid-template-columns:1fr}}
+@media (max-width:640px){.dgain{grid-template-columns:1fr}.dgain div+div{border-top:1px solid rgba(255,255,255,.14)}}
 .modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);opacity:0;pointer-events:none;z-index:var(--z-modal);width:min(94vw,500px);max-height:92vh;overflow:auto;background:var(--paper);color:var(--ink);border-radius:var(--r);padding:32px;transition:opacity .3s,transform .4s var(--ease);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
 .modal.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
 .modal .field input,.modal .field select{border-color:var(--line);background:var(--surface);color:var(--ink)}

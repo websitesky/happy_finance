@@ -198,7 +198,7 @@ nav.main a:hover{border-color:var(--orange)}
 .services h2{color:#fff}
 .services .eyebrow{color:var(--sand)}
 .rails{display:flex;gap:10px;height:490px;padding-top:58px;max-width:1200px;margin-inline:auto}
-.folder{--navy-rib:repeating-linear-gradient(90deg,rgba(255,255,255,.09) 0 3px,rgba(0,0,0,.25) 3px 6px,transparent 6px 18px),linear-gradient(170deg,#1D3C90,#102662 55%,#0B1642);--orange-rib:repeating-linear-gradient(90deg,rgba(0,0,0,.2) 0 3px,rgba(255,255,255,.08) 3px 5px,transparent 5px 16px),linear-gradient(160deg,#FF8A57,#FB6835 40%,#C9401A);position:relative;isolation:isolate;flex:1;min-width:152px;cursor:pointer;color:#fff;transition:flex .85s var(--ease)}
+.folder{--navy-rib:repeating-linear-gradient(90deg,rgba(255,255,255,.09) 0 3px,rgba(0,0,0,.25) 3px 6px,transparent 6px 18px),linear-gradient(170deg,#1D3C90,#102662 55%,#0B1642);--orange-rib:repeating-linear-gradient(90deg,rgba(0,0,0,.035) 0 2px,rgba(255,255,255,.03) 2px 3px,transparent 3px 16px),linear-gradient(160deg,#FF8A57,#FB6835 40%,#E4551F);position:relative;isolation:isolate;flex:1;min-width:152px;cursor:pointer;color:#fff;transition:flex .85s var(--ease)}
 .folder.on{flex:4;color:#0D1330}
 .folder::before{content:"";position:absolute;left:16px;right:16px;top:-9px;height:24px;background:var(--sand);border-radius:var(--r) var(--r) 0 0;z-index:-1;transition:transform .6s var(--ease)}
 .folder:hover::before{transform:translateY(-5px)}

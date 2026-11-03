@@ -88,7 +88,7 @@
   });
 
   // рифлені папки: наведення, фокус або дотик висувають папку вперед
-  // на вузькому екрані папки складені закритими, дотик відкриває вікно «Детальніше» цієї послуги
+  // на вузькому екрані папки складені закритими; клік чи дотик будь-де на папці відкриває вікно «Детальніше»
   const folders = $$('.folder');
   const narrow = matchMedia('(max-width:1180px)');
   const openFolder = f => folders.forEach(x => x.classList.toggle('on', x === f));
@@ -103,15 +103,14 @@
     f.addEventListener('mouseenter', () => { if (!narrow.matches) openFolder(f); });
     f.addEventListener('focusin', () => { if (!narrow.matches) openFolder(f); });
     f.addEventListener('click', () => { if (!narrow.matches) openFolder(f); });
-    f.addEventListener('keydown', e => { if (narrow.matches && (e.key === 'Enter' || e.key === ' ') && e.target === f) { e.preventDefault(); f.click(); } });
+    f.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === f) { e.preventDefault(); f.click(); } });
   });
-  // дані вікна вішаємо на саму папку лише на телефоні, тож клік по ній відкриває вікно
+  // дані вікна вішаємо на саму папку, тож клік будь-де по ній відкриває вікно
+  folders.forEach(f => {
+    const id = f.querySelector('[data-drawer]')?.dataset.drawer;
+    if (id) { f.dataset.drawer = id; f.setAttribute('role', 'button'); }
+  });
   const syncFolders = () => {
-    folders.forEach(f => {
-      const id = f.querySelector('[data-drawer]')?.dataset.drawer;
-      if (narrow.matches && id) { f.dataset.drawer = id; f.setAttribute('role', 'button'); }
-      else { delete f.dataset.drawer; f.removeAttribute('role'); }
-    });
     if (narrow.matches) openFolder(null);
     else if (!folders.some(x => x.classList.contains('on'))) openFolder(folders[0]);
   };
